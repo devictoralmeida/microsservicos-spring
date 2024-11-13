@@ -1,0 +1,24 @@
+server:
+  port: 9010
+
+spring:
+  application:
+    name: "message"
+  cloud:
+    function:
+      definition: email|sms # O nome das funções separadas por pipe significa que vamos compor as 2 funções em uma única função, a ordem importa
+      # A rota será baseUrl/emailsms
+    stream:
+      bindings:
+        emailsms-in-0: # Nome da ligação = O nome da função seguido de -in significa que é a função de input binding, 0 significa o valor de início do índice
+          destination: send-communication # O nome da fila
+          group: ${spring.application.name} # O nome do grupo que será exibido no console
+        emailsms-out-0:
+          destination: communication-sent # O nome da exchange
+  #          Aqui não será necessário utilizar streamBridge.send, pois o Spring Cloud Stream irá fazer isso para nós, ele irá enviar o evento com o retorno da função sms para a exchange
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    connection-timeout: 10s

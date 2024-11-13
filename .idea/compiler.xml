@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cards" />
+        <module name="accounts (2)" />
+        <module name="loans" />
+        <module name="accounts (1)" />
+        <module name="gatewayserver (2)" />
+        <module name="configserver" />
+        <module name="gatewayserver (1)" />
+        <module name="message" />
+        <module name="eurekaserver" />
+        <module name="gatewayserver" />
+        <module name="cards (1)" />
+        <module name="loans (1)" />
+        <module name="cards (2)" />
+        <module name="configserver (1)" />
+        <module name="accounts" />
+        <module name="message (1)" />
+        <module name="configserver (2)" />
+        <module name="eurekaserver (1)" />
+      </profile>
+      <profile name="Annotation profile for eurekaserver" enabled="true">
+        <sourceOutputDir name="../../kafka/eurekaserver/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../kafka/eurekaserver/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eurekaserver (2)" />
+      </profile>
+      <profile name="Annotation profile for loans" enabled="true">
+        <sourceOutputDir name="../../rabbitmq/loans/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../rabbitmq/loans/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="loans (2)" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="accounts" options="-parameters" />
+      <module name="accounts (1)" options="-parameters" />
+      <module name="accounts (2)" options="-parameters" />
+      <module name="cards" options="-parameters" />
+      <module name="cards (1)" options="-parameters" />
+      <module name="cards (2)" options="-parameters" />
+      <module name="configserver" options="-parameters" />
+      <module name="configserver (1)" options="-parameters" />
+      <module name="configserver (2)" options="-parameters" />
+      <module name="eurekaserver" options="-parameters" />
+      <module name="eurekaserver (1)" options="-parameters" />
+      <module name="eurekaserver (2)" options="-parameters" />
+      <module name="gatewayserver" options="-parameters" />
+      <module name="gatewayserver (1)" options="-parameters" />
+      <module name="gatewayserver (2)" options="-parameters" />
+      <module name="loans" options="-parameters" />
+      <module name="loans (1)" options="-parameters" />
+      <module name="loans (2)" options="-parameters" />
+      <module name="message" options="-parameters" />
+      <module name="message (1)" options="-parameters" />
+    </option>
+  </component>
+</project>

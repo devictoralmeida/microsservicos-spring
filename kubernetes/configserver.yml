@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment # Tipo da configuração
+metadata:
+  name: configserver-deployment
+  labels:
+    app: configserver
+spec:
+  replicas: 1 # Quantidade de instâncias
+  selector:
+    matchLabels:
+      app: configserver # Aqui repetimos a label de cima
+  template:
+    metadata:
+      labels:
+        app: configserver # Aqui repetimos a label de cima
+    spec: # Especificações do template
+      containers:
+      - name: configserver # Nome do container
+        image: victoralmeidadev/configserver:s14 # Imagem que será utilizada para o deploy, quando não mencionamos de qual registro virá a imagem, o padrão 
+        ports:
+        - containerPort: 8071
+---
+apiVersion: v1
+kind: Service # Tipo da configuração
+metadata:
+  name: configserver # Nome do serviço, que também será o hostname dentro do cluster
+spec:
+  selector:
+    app: configserver # Aqui definimos para qual deployment esse serviço irá apontar, aqui ele faz o match com a label app: configserver
+  type: LoadBalancer # Tipo de serviço, LoadBalancer é um serviço que irá expor o deployment para o ambiente externo ao cluster
+  ports:
+    - protocol: TCP # Protocolo de comunicação da web
+      port: 8071 # Porta externa
+      targetPort: 8071 # Porta interna

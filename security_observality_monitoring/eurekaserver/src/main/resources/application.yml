@@ -1,0 +1,35 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: "eurekaserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetchRegistry: false # N�o ser� necess�rio buscar registros de outros servi�os
+    registerWithEureka: false # N�o ser� necess�rio registrar este servi�o no Eureka
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ # URL do Eureka Server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}

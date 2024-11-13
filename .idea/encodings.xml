@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/kafka/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/cards/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/configserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/eurekaserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/gatewayserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/loans/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kafka/message/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/cards/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/configserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/eurekaserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/gatewayserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/loans/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq/message/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/security_observality_monitoring/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/security_observality_monitoring/cards/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/security_observality_monitoring/configserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/security_observality_monitoring/gatewayserver/src/main/java" charset="UTF-8" />
+  </component>
+</project>

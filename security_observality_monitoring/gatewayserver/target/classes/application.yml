@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: "gatewayserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      httpclient:
+        connect-timeout: 1000 # 1s: Tempo que o gateway irá esperar para estabelecer a conexão
+        response-timeout: 10s # Tempo que o gateway irá esperar pela resposta dos MS
+  data:
+    redis:
+      connect-timeout: 2s
+      host: localhost
+      port: 6379
+      timeout: 1s
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # URL que será usada para obter a chave pública do servidor de autorização e validar o token JWT
+          jwk-set-uri: "http://localhost:7080/realms/master/protocol/openid-connect/certs"
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Eazy Bank Gateway Server Application"
+    version: "1.0.0"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
+  info:
+    env:
+      enabled: true # Habilita o endpoint para verificar as infos do MS
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+resilience4j.circuitbreaker:
+  configs:
+    default: # Configuração padrão para o circuit breaker
+      slidingWindowSize: 10 # Número de chamadas necessárias para abrir/fechar o circuito
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50 # Porcentagem de falhas para abrir o circuito
+      waitDurationInOpenState: 10000 # Tempo em milissegundos (10s) que irá ficar no estado aberto, antes de ir para o semi-aberto
+
+logging:
+  level:
+    com:
+      eazybytes:
+        gatewayserver: DEBUG
