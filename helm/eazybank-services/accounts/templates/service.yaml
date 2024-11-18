@@ -1,0 +1,1 @@
+{{- template "common.service" . -}} # Referência ao template common.service

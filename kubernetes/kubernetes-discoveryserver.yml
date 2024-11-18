@@ -1,0 +1,78 @@
+---
+apiVersion: v1
+kind: List # Vamos criar uma lista de obj kubernetes dentro de items.
+items:
+  - apiVersion: v1
+    kind: Service # Serviço de discovery do kubernetes
+    metadata:
+      labels:
+        app: spring-cloud-kubernetes-discoveryserver
+      name: spring-cloud-kubernetes-discoveryserver
+    spec:
+      ports:
+        - name: http
+          port: 80 # Porta exposta para os outros MS, não haverá conflito de portas pq o tipo do serviço é ClusterIP, já o do KeyCloak é LoadBalancer
+          targetPort: 8761 # Porta que o serviço irá iniciar
+      selector:
+        app: spring-cloud-kubernetes-discoveryserver
+      type: ClusterIP
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      labels:
+        app: spring-cloud-kubernetes-discoveryserver
+      name: spring-cloud-kubernetes-discoveryserver
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      labels:
+        app: spring-cloud-kubernetes-discoveryserver
+      name: spring-cloud-kubernetes-discoveryserver:view
+    roleRef:
+      kind: Role
+      apiGroup: rbac.authorization.k8s.io
+      name: namespace-reader
+    subjects:
+      - kind: ServiceAccount
+        name: spring-cloud-kubernetes-discoveryserver
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: default
+      name: namespace-reader
+    rules:
+      - apiGroups: ["", "extensions", "apps"]
+        resources: ["services", "endpoints", "pods"]
+        verbs: ["get", "list", "watch"]
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: spring-cloud-kubernetes-discoveryserver-deployment
+    spec:
+      selector:
+        matchLabels:
+          app: spring-cloud-kubernetes-discoveryserver
+      template:
+        metadata:
+          labels:
+            app: spring-cloud-kubernetes-discoveryserver
+        spec:
+          serviceAccount: spring-cloud-kubernetes-discoveryserver
+          containers:
+          - name: spring-cloud-kubernetes-discoveryserver
+            image: springcloud/spring-cloud-kubernetes-discoveryserver:3.1.3 # Imagem do discovery server publicada pelo time do spring cloud
+            imagePullPolicy: IfNotPresent
+            readinessProbe:
+              httpGet:
+                port: 8761
+                path: /actuator/health/readiness
+              initialDelaySeconds: 120
+              periodSeconds: 30  
+            livenessProbe:
+              httpGet:
+                port: 8761
+                path: /actuator/health/liveness
+              initialDelaySeconds: 120
+              periodSeconds: 30  
+            ports:
+            - containerPort: 8761

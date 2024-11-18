@@ -1,0 +1,26 @@
+# Valores que serão injetados no template do chart
+deploymentName: accounts-deployment
+serviceName: accounts
+appLabel: accounts
+appName: accounts
+
+replicaCount: 1
+
+image:
+  repository: victoralmeidadev/accounts
+  tag: s14
+
+containerPort: 8080
+
+service:
+  type: ClusterIP # Permitindo acesso apenas dentro do cluster
+  port: 8080
+  targetPort: 8080
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: true

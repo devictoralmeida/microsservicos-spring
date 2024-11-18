@@ -1,0 +1,14 @@
+apiVersion: v2
+name: accounts
+description: A Helm chart for Kubernetes
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.0.0"
+
+dependencies: # Aqui definimos as dependências do nosso chart, eles estarão presentes na pasta charts após o comando helm dependencies build
+  - name: eazybank-common # Nome do chart
+    version: 0.1.0
+    repository: file://../../eazybank-common # Caminho para o chart
