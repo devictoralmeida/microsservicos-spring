@@ -58,4 +58,6 @@ logging:
   level:
     com:
       eazybytes:
-        gatewayserver: DEBUG
+        accounts: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]" # Adiciona o trace_id e span_id no log
